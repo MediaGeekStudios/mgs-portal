@@ -71,35 +71,6 @@ export default function AddClientButton() {
 
                     <div className="flex flex-col gap-4 py-2 w-full">
 
-                        {/*<FieldSet>*/}
-                        {/*    <FieldLegend>New Client Information</FieldLegend>*/}
-                        {/*    <FieldDescription className="my-2">Use the following form to create a new customer record</FieldDescription>*/}
-
-                        {/*    <div className="flex flex-row gap-4 w-full mt-2">*/}
-                        {/*        <div className="flex flex-col">*/}
-                        {/*            <FieldLabel htmlFor="name">Client Name</FieldLabel>*/}
-                        {/*            <Input id="name" name="name" value={form.name} onChange={handleChange} placeholder="John Doe" />*/}
-                        {/*        </div>*/}
-                        {/*        <div className="flex flex-col">*/}
-                        {/*            <FieldLabel htmlFor="email">Client Email</FieldLabel>*/}
-                        {/*            <Input id="email" name="email" value={form.email} onChange={handleChange} placeholder="John.doe@example.com" />*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-                        {/*    <div className="flex flex-row gap-8 w-full mt-4">*/}
-                        {/*        <div className="flex flex-col">*/}
-                        {/*            <FieldLabel htmlFor="type">Business Type</FieldLabel>*/}
-                        {/*            <Input id="type" name="type" value={form.type} onChange={handleChange} placeholder="Store" />*/}
-                        {/*        </div>*/}
-                        {/*        <div className="flex flex-col">*/}
-                        {/*            <FieldLabel htmlFor="website_url">Website</FieldLabel>*/}
-                        {/*            <Input id="website_url" name="website_url" value={form.website_url} onChange={handleChange} placeholder="https://example.com" />*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-                        {/*</FieldSet>*/}
-
-
                         <div className="flex flex-row gap-8 w-full">
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '8px', paddingBottom: '8px', width: '100%' }}>
                                 <Label htmlFor="name">Name *</Label>
