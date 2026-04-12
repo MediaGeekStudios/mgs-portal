@@ -1,4 +1,5 @@
-import DashNav from '@/components/Dashnav';
+import {SidebarProvider, SidebarTrigger} from '@/components/ui/sidebar';
+import {Dashsidebar} from '@/components/Dashsidebar';
 
 export default function DashboardLayout({
                                             children,
@@ -6,13 +7,18 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
+
         <div className="flex flex-1">
-            <DashNav />
-            <div className="flex-1 overflow-auto p-5 bg-linear-to-br from-gray-800 to-gray-900">
-                <div className="min-h-full rounded-xl p-6 bg-white/20 backdrop-blur-md border border-white/10">
-                    {children}
+            <SidebarProvider className="min-h-full">
+                <Dashsidebar/>
+                <div className="flex-1 overflow-auto p-5 bg-linear-to-br from-gray-800 to-gray-900">
+                    <div className="min-h-full rounded-xl p-6 bg-white/20 backdrop-blur-md shadow-2xs border-white/10">
+                        {children}
+                    </div>
                 </div>
-            </div>
+
+            </SidebarProvider>
         </div>
+
     );
 }
