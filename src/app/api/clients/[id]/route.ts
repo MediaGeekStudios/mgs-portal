@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: number }> }) {
     const { id } = await params;
     const body = await req.json();
     const { name, email, website_url, type } = body;

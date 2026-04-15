@@ -25,7 +25,7 @@ export function Dashsidebar() {
     return (
         <Sidebar collapsible="none">
             <SidebarHeader className="w-auto bg-gray-800 text-center">
-                <span className="text-lg-center font-bold text-cyan-400">MGS Dashboard</span>
+                <span className="text-lg-center font-bold text-cyan-400">Media Geek Studios Dashboard</span>
             </SidebarHeader>
 
             <SidebarContent>
@@ -48,7 +48,7 @@ export function Dashsidebar() {
             </SidebarContent>
 
 
-            <SidebarFooter className='w-auto bg-gray-900 text-center'>
+            <SidebarFooter className='w-auto bg-gray-700 text-center'>
                 <span className="text-lg-center font-bold text-cyan-400">&copy; Media Geek Studios</span>
             </SidebarFooter>
         </Sidebar>

@@ -78,7 +78,7 @@ function DialogContent({
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '900px',
+            width: '70%',
             maxWidth: 'calc(100% - 2rem)',
           }}
           className={cn(

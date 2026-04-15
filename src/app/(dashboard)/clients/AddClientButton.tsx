@@ -13,18 +13,6 @@ import {
 import {Input} from '@/components/ui/input';
 import {Label} from '@/components/ui/label';
 import {Button} from '@/components/ui/button';
-import {
-    Field,
-    FieldContent,
-    FieldDescription,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    FieldLegend,
-    FieldSeparator,
-    FieldSet,
-    FieldTitle,
-} from "@/components/ui/field";
 
 export default function AddClientButton() {
     const router = useRouter();
@@ -37,6 +25,7 @@ export default function AddClientButton() {
     };
 
     const handleSubmit = async () => {
+        console.log('handleSubmit fired', form);
         setLoading(true);
 
         try {
