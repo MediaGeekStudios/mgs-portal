@@ -1,11 +1,16 @@
 import { Pool } from 'pg';
 import { NextResponse } from 'next/server';
+import { isSignedIn } from "@/lib/supabase/server";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 
 // POST action - create ticket on database
 export async function POST(req: Request) {
+    if (!(await isSignedIn())) {
+        return NextResponse.json({ error: "Not signed in" }, { status: 401 });
+    }
+
     const body = await req.json();
 
     // Column names of table in db
