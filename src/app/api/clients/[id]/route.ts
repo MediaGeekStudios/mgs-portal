@@ -1,9 +1,14 @@
 import { Pool } from 'pg';
 import { NextResponse } from "next/server";
+import { isSignedIn } from "@/lib/supabase/server";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-export async function PATCH(req: Request, { params }: { params: Promise<{ id: number }> }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    if (!(await isSignedIn())) {
+        return NextResponse.json({ error: "Not signed in" }, { status: 401 });
+    }
+
     const { id } = await params;
     const body = await req.json();
     const { name, email, website_url, type } = body;
@@ -21,6 +26,10 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: nu
 }
 
 export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+    if (!(await isSignedIn())) {
+        return NextResponse.json({ error: "Not signed in" }, { status: 401 });
+    }
+
     const { id } = await params;
 
     try {
