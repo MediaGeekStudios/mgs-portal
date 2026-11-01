@@ -52,7 +52,7 @@ export default function AddClientButton() {
             <Button onClick={() => setOpen(true)}>+ Add New</Button>
 
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent>
+                <DialogContent className="max-h-[90svh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>Add New Client</DialogTitle>
                         <DialogDescription>Use the following form to create a new client record</DialogDescription>
@@ -60,31 +60,31 @@ export default function AddClientButton() {
 
                     <div className="flex flex-col gap-4 py-2 w-full">
 
-                        <div className="flex flex-row gap-8 w-full">
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '8px', paddingBottom: '8px', width: '100%' }}>
+                        <div className="flex flex-col gap-3 w-full sm:flex-row sm:gap-8">
+                            <div className="flex flex-col gap-2 w-full sm:gap-6 sm:py-2">
                                 <Label htmlFor="name">Name *</Label>
                                 <Input id="name" name="name" value={form.name} onChange={handleChange}
                                        placeholder="John Doe" className="w-full" />
                             </div>
 
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '8px', paddingBottom: '8px', width: '100%' }}>
+                            <div className="flex flex-col gap-2 w-full sm:gap-6 sm:py-2">
                                 <Label htmlFor="type">Type</Label>
                                 <Input id="type" name="type" value={form.type} onChange={handleChange}
                                        placeholder="Store" className="w-full" />
                             </div>
                         </div>
 
-                        <div className="flex flex-row gap-8 w-full">
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '8px', paddingBottom: '8px', width: '100%' }}>
+                        <div className="flex flex-col gap-3 w-full sm:flex-row sm:gap-8">
+                            <div className="flex flex-col gap-2 w-full sm:gap-6 sm:py-2">
                                 <Label htmlFor="email">Email *</Label>
-                                <Input id="email" name="email" value={form.email} onChange={handleChange}
+                                <Input id="email" name="email" type="email" value={form.email} onChange={handleChange}
                                        placeholder="John.doe@example.com" className="w-full" />
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '8px', paddingBottom: '8px', width: '100%' }}>
+                            <div className="flex flex-col gap-2 w-full sm:gap-6 sm:py-2">
                                 <Label htmlFor="website_url">Website URL</Label>
-                                <Input id="website_url" name="website_url" value={form.website_url}
+                                <Input id="website_url" name="website_url" type="url" value={form.website_url}
                                        onChange={handleChange}
                                        placeholder="https://example.com" className="w-full" />
                             </div>
