@@ -42,7 +42,7 @@ export default function TicketsRenderer({data}: TicketProps) {
         {/*    onRowClick={(row) => setSelectedRecord(row as Ticket)}*/}
         {/*/>*/}
 
-            <div className="p-8 max-w-7xl mx-auto">
+            <div className="p-0 md:p-8 max-w-7xl mx-auto">
                 <div className="space-y-4">
                     {data.map((ticket, index) => {
                         const StatusIcon = statusIcons[ticket.status as keyof typeof statusIcons] ?? Circle;
