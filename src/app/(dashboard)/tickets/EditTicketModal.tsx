@@ -103,7 +103,7 @@ export default function EditTicketModal({record, onClose}: EditTicketModalProps)
 
     return (
         <Dialog open={!!record} onOpenChange={onClose}>
-            <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+            <DialogContent className="max-h-[90svh] overflow-y-auto" onOpenAutoFocus={(e) => e.preventDefault()}>
                 <DialogHeader>
                     <DialogTitle>Ticket: {record?.id} - {record?.title}</DialogTitle>
                     <div className="flex justify-end py-1">Last Updated: {record?.updated_on ? new Date(record.updated_on).toLocaleString() : 'N/A'}</div>
@@ -112,26 +112,26 @@ export default function EditTicketModal({record, onClose}: EditTicketModalProps)
 
                 <div className="flex flex-col gap-4 py-2 w-full">
 
-                    {/* Row 1 - Client info */}
-                    <div className="flex flex-row gap-1">
+                    {/* Row 1 - Client info (stacks on phones) */}
+                    <div className="flex flex-col gap-3 sm:flex-row sm:gap-1">
                         <div className="flex flex-col gap-2 w-full">
                             <Label htmlFor="client_name">Client Name *</Label>
                             <Input id="client_name" name="client_name" value={form.client_name} onChange={handleChange} />
                         </div>
                         <div className="flex flex-col gap-2 w-full">
                             <Label htmlFor="client_email">Client Email</Label>
-                            <Input id="client_email" name="client_email" value={form.client_email} onChange={handleChange} />
+                            <Input id="client_email" name="client_email" type="email" value={form.client_email} onChange={handleChange} />
                         </div>
                         <div className="flex flex-col gap-2 w-full">
                             <Label htmlFor="website_url">Website URL</Label>
-                            <Input id="website_url" name="website_url" value={form.website_url} onChange={handleChange} placeholder="https://example.com" />
+                            <Input id="website_url" name="website_url" type="url" value={form.website_url} onChange={handleChange} placeholder="https://example.com" />
                         </div>
                     </div>
 
                     {/* Row 2 - Status and Priority */}
-                    <div className="flex flex-row gap-1 w-full">
+                    <div className="grid grid-cols-2 gap-2 w-full">
                         <Select value={form.status} onValueChange={(value) => setForm({...form, status: value})}>
-                            <SelectTrigger>
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Status" />
                             </SelectTrigger>
                             <SelectContent>
@@ -142,7 +142,7 @@ export default function EditTicketModal({record, onClose}: EditTicketModalProps)
                         </Select>
 
                         <Select value={form.priority} onValueChange={(value) => setForm({...form, priority: value})}>
-                            <SelectTrigger>
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Priority" />
                             </SelectTrigger>
                             <SelectContent>

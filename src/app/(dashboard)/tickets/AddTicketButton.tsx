@@ -119,17 +119,16 @@ export default function AddTicketButton({ defaultValues, open, onOpenChange }: A
             )}
 
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                <DialogContent>
+                <DialogContent className="max-h-[90svh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>Add New Ticket</DialogTitle>
                         <DialogDescription>Use the following form to create a new ticket</DialogDescription>
                     </DialogHeader>
 
                     <div className="flex flex-col gap-4 py-2 w-full">
-                        <div className="flex flex-row gap-1">
+                        {/* Stacks on phones, side by side from the sm breakpoint up */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:gap-1">
                             <div className="flex flex-col gap-2 w-full">
-
-
                                 <Label htmlFor="client_name">Client Name *</Label>
                                 <Input id="client_name" name="client_name" value={form.client_name}
                                        onChange={handleChange}/>
@@ -137,24 +136,24 @@ export default function AddTicketButton({ defaultValues, open, onOpenChange }: A
 
                             <div className="flex flex-col gap-2 w-full">
                                 <Label htmlFor="client_email">Client Email</Label>
-                                <Input id="client_email" name="client_email" value={form.client_email}
+                                <Input id="client_email" name="client_email" type="email" value={form.client_email}
                                        onChange={handleChange}/>
                             </div>
 
                             <div className="flex flex-col gap-2 w-full">
                                 <Label htmlFor="website_url">Website URL</Label>
-                                <Input id="website_url" name="website_url" value={form.website_url}
+                                <Input id="website_url" name="website_url" type="url" value={form.website_url}
                                        onChange={handleChange}
                                        placeholder="https://example.com"/>
                             </div>
                         </div>
 
-                        <div className="flex flex-row gap-1 w-full">
+                        <div className="grid grid-cols-2 gap-2 w-full">
                             {/*<Label htmlFor="status">Status</Label>*/}
 
 
                             <Select onValueChange={(value) => setForm({...form, status: value})}>
-                                <SelectTrigger>
+                                <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Status"/>
                                 </SelectTrigger>
                                 <SelectContent>
@@ -165,7 +164,7 @@ export default function AddTicketButton({ defaultValues, open, onOpenChange }: A
                             </Select>
 
                             <Select onValueChange={(value) => setForm({...form, priority: value})}>
-                                <SelectTrigger>
+                                <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Priority"/>
                                 </SelectTrigger>
 
@@ -179,7 +178,7 @@ export default function AddTicketButton({ defaultValues, open, onOpenChange }: A
 
                         </div>
 
-                        <div className="flex flex-row gap-1 w-full mt-5">
+                        <div className="flex flex-row gap-1 w-full sm:mt-5">
                             <div className="flex flex-col gap-2 w-full">
                                 <Label htmlFor="title">Ticket Title</Label>
                                 <Input id="title" name="title" value={form.title} onChange={handleChange}/>
