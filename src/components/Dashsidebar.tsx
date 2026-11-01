@@ -7,11 +7,11 @@ import {
     SidebarGroup,
     SidebarHeader,
     SidebarGroupLabel,
-    SidebarGroupAction,
     SidebarMenuItem, SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import {usePathname} from 'next/navigation';
 import Link from "next/link";
+import {signOut} from "@/app/login/actions";
 
 const links = [
     {href: '/tickets', label: 'Tickets'},
@@ -49,6 +49,11 @@ export function Dashsidebar() {
 
 
             <SidebarFooter className='w-auto bg-gray-700 text-center'>
+                <form action={signOut}>
+                    <button type="submit" className="w-full rounded-md px-4 py-2 text-sm font-bold text-white hover:bg-gray-600">
+                        Sign out
+                    </button>
+                </form>
                 <span className="text-lg-center font-bold text-cyan-400">&copy; Media Geek Studios</span>
             </SidebarFooter>
         </Sidebar>

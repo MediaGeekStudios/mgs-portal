@@ -1,11 +1,16 @@
 import {SidebarProvider} from '@/components/ui/sidebar';
 import {Dashsidebar} from '@/components/Dashsidebar';
+import {redirect} from 'next/navigation';
+import {isSignedIn} from '@/lib/supabase/server';
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
                                             children,
                                         }: {
     children: React.ReactNode;
 }) {
+    // Second line of defense behind proxy.ts
+    if (!(await isSignedIn())) redirect('/login');
+
     return (
 
         <div className="flex flex-1">

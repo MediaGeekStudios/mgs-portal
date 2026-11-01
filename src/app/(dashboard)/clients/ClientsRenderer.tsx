@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { DataTable } from "../../../components/DataTable";
-import { columns, Client } from './columns';
+import { Client } from './columns';
 import AddClientButton from './AddClientButton';
 import EditClientModal from './EditClientModal';
 import { motion } from 'motion/react';
