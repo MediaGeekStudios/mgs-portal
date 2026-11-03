@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import { IDLE_TIMEOUT, LAST_ACTIVE_COOKIE } from '@/lib/idle';
 
 // Runs before every matched request: refreshes the Supabase session cookie
 // and keeps signed-out visitors away from the dashboard and API.
@@ -29,14 +30,24 @@ export async function proxy(request: NextRequest) {
     );
 
     const { data } = await supabase.auth.getClaims();
-    const signedIn = !!data?.claims;
+    let signedIn = !!data?.claims;
     const { pathname } = request.nextUrl;
 
+    // Server-side half of the idle logout: catches tabs that were closed or asleep
+    const lastActive = Number(request.cookies.get(LAST_ACTIVE_COOKIE)?.value ?? 0);
+    if (signedIn && lastActive && Date.now() - lastActive > IDLE_TIMEOUT) {
+        await supabase.auth.signOut({ scope: 'local' });
+        response.cookies.delete(LAST_ACTIVE_COOKIE);
+        signedIn = false;
+    }
+
     if (!signedIn && pathname !== '/login') {
-        if (pathname.startsWith('/api')) {
-            return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
-        }
-        return NextResponse.redirect(new URL('/login', request.url));
+        const blocked = pathname.startsWith('/api')
+            ? NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+            : NextResponse.redirect(new URL('/login', request.url));
+        // Carry over the cleared session cookies so the browser actually forgets them
+        response.cookies.getAll().forEach(cookie => blocked.cookies.set(cookie));
+        return blocked;
     }
 
     if (signedIn && pathname === '/login') {
