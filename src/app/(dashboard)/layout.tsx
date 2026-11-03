@@ -2,6 +2,7 @@ import {SidebarProvider} from '@/components/ui/sidebar';
 import {Dashsidebar, DashMobileNav} from '@/components/Dashsidebar';
 import {redirect} from 'next/navigation';
 import {isSignedIn} from '@/lib/supabase/server';
+import IdleLogout from '@/components/IdleLogout'
 
 export default async function DashboardLayout({
                                             children,
@@ -15,6 +16,7 @@ export default async function DashboardLayout({
 
         <div className="flex flex-1 min-w-0">
             <SidebarProvider className="min-h-full flex-col md:flex-row">
+                <IdleLogout />
                 <Dashsidebar/>
                 <DashMobileNav/>
                 <div className="flex-1 min-w-0 overflow-auto p-2 md:p-5 bg-linear-to-br from-gray-700 to-gray-200">
